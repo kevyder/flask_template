@@ -1,4 +1,4 @@
-version: "3.11"
+version: "3.10"
 
 services:
   app:
@@ -7,6 +7,6 @@ services:
     volumes:
       - .:/app
     ports:
-      - "8000:8000"
+      - "8001:8001"
     command: >
-      sh -c "flask run --host=0.0.0.0 --port=8000 --debug"
+      sh -c "flask run --host=0.0.0.0 --port=8001 --debug"
