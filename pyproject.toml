@@ -18,7 +18,7 @@ black = "^24.4.2"
 pydantic = "^2.7.1"
 pre-commit = "^3.4.0"
 coverage = "^7.3.2"
-pytest = "^8.2.0"
+pytest = "^8.2.1"
 
 
 [build-system]
