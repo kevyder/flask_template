@@ -1,11 +1,10 @@
-FROM python:3.10
+FROM python:3.13.1-slim
 
 ENV PYTHONUNBUFFERED 1
 
 # Update and install build dependencies
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
-        postgresql-server-dev-all \
         gcc \
         python3-dev \
         musl-dev \
