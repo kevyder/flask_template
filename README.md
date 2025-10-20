@@ -5,7 +5,7 @@ A ready-to-use Flask project template with preconfigured development and testing
 ## Features
 
 - [Flask](https://flask.palletsprojects.com/) 3.1.1
-- Dependency management with [Poetry](https://python-poetry.org/)
+- Dependency management with [uv](https://github.com/astral-sh/uv)
 - Linting and formatting: [flake8](https://flake8.pycqa.org/), [black](https://black.readthedocs.io/), [isort](https://pycqa.github.io/isort/)
 - Pre-commit hooks configured
 - Testing with [pytest](https://docs.pytest.org/) and [coverage](https://coverage.readthedocs.io/)
@@ -13,28 +13,28 @@ A ready-to-use Flask project template with preconfigured development and testing
 
 ## Requirements
 
-- Python 3.13.1
-- [Poetry](https://python-poetry.org/docs/#installation) 2.1.1
+- Python 3.13.9
+- [uv](https://github.com/astral-sh/uv) 0.9.3
 - Docker (optional)
 
 ## Usage
 
-### Install poetry 2.1.1
+### Install uv 0.9.3
 
 ```sh
-pip install poetry==2.1.1
+pip install uv==0.9.3
 ```
 
 ### Install project dependencies
 
 ```sh
-poetry install
+uv sync
 ```
 
 ### Run locally
 
 ```sh
-poetry run flask run --host=0.0.0.0 --port=8001 --debug
+flask run --host=0.0.0.0 --port=8080 --debug
 ```
 
 Or simply:
@@ -49,12 +49,12 @@ python app.py
 docker-compose up --build
 ```
 
-The app will be available at [http://localhost:8001](http://localhost:8001).
+The app will be available at [http://localhost:8080](http://localhost:8080).
 
 ## Testing
 
 ```sh
-poetry run pytest
+pytest
 ```
 
 ## Pre-commit
@@ -62,7 +62,7 @@ poetry run pytest
 Install pre-commit hooks:
 
 ```sh
-poetry run pre-commit install
+pre-commit install
 ```
 
 ## Project structure
@@ -73,7 +73,7 @@ poetry run pre-commit install
 ├── Dockerfile
 ├── docker-compose.yml
 ├── pyproject.toml
-├── poetry.lock
+├── uv.lock
 ├── README.md
 ├── tests/
 └── ...

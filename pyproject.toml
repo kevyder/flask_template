@@ -1,29 +1,35 @@
-[tool.poetry]
+[project]
 name = "flask-template"
-version = "0.1.0"
+version = "0.2.0"
 description = "Flask template project with preconfigured tools"
-authors = ["Kevin Rodriguez <kyrodriguez97@gmail.com>"]
+authors = [{ name = "Kevin Rodriguez", email = "kyrodriguez97@gmail.com" }]
+requires-python = ">=3.13.1"
 readme = "README.md"
-package-mode = false
+dependencies = [
+    "flask==3.1.2",
+]
 
-[tool.poetry.dependencies]
-python = "3.13.1"
-flask = "3.1.2"
+[dependency-groups]
+test = [
+    "coverage==7.11.0",
+    "pytest==8.4.2",
+]
+dev = [
+    "flake8==7.3.0",
+    "autoflake==2.3.1",
+    "mypy==1.18.2",
+    "isort==7.0.0",
+    "black==25.9.0",
+    "pre-commit==4.3.0",
+]
 
-[tool.poetry.group.test.dependencies]
-coverage = "7.11.0"
-pytest = "8.4.2"
-
-[tool.poetry.group.dev.dependencies]
-flake8 = "7.3.0"
-autoflake = "2.3.1"
-mypy = "1.18.2"
-isort = "7.0.0"
-black = "25.9.0"
-pydantic = "2.12.3"
-pre-commit = "4.3.0"
-
+[tool.uv]
+package = false
+default-groups = [
+    "test",
+    "dev",
+]
 
 [build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
+requires = ["hatchling"]
+build-backend = "hatchling.build"
