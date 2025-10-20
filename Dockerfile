@@ -1,32 +1,31 @@
-FROM python:3.13.1-slim
+FROM python:3.13.9-slim
 
 ENV PYTHONUNBUFFERED 1
+ENV UV_VERSION=0.9.3
+ENV UV_PROJECT_ENVIRONMENT="/usr/local/"
 
-# Update and install build dependencies
-RUN apt-get update \
-    && apt-get install -y --no-install-recommends \
-        gcc \
-        python3-dev \
-        musl-dev \
-    && rm -rf /var/lib/apt/lists/*
+# Set Flask main module
+ENV FLASK_APP=src.app
 
-# Install Poetry
-RUN pip3 install poetry==2.1.1
-RUN poetry config virtualenvs.create false
-
-# Copy using poetry.lock* in case it doesn't exist yet
-COPY ./pyproject.toml ./poetry.lock* /app/
-
-# Clean up build dependencies
-RUN apt-get purge -y --auto-remove \
-        gcc \
-        python3-dev \
-        musl-dev
-
+# Set work directory
 WORKDIR /app
-COPY . /app/
 
-RUN adduser --disabled-password --gecos '' user
 
-RUN poetry install --no-root
-USER user
+# Install UV
+RUN pip install --no-cache-dir --upgrade pip && \
+    pip install --no-cache-dir uv==$UV_VERSION
+
+# Copy using uv.lock* in case it doesn't exist yet
+COPY ./pyproject.toml ./uv.lock* /app/
+
+# Install dependencies
+RUN uv sync
+
+# Copy project files
+COPY src/ ./src/
+
+# Expose port
+EXPOSE 8080
+
+# Start the application
+CMD ["flask", "run", "--host=0.0.0.0", "--port=8080", "--debug"]
