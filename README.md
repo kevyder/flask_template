@@ -4,25 +4,25 @@ A ready-to-use Flask project template with preconfigured development and testing
 
 ## Features
 
-- [Flask](https://flask.palletsprojects.com/) 3.1.1
+- [Flask](https://flask.palletsprojects.com/) 3.1.2
 - Dependency management with [uv](https://github.com/astral-sh/uv)
-- Linting and formatting: [flake8](https://flake8.pycqa.org/), [black](https://black.readthedocs.io/), [isort](https://pycqa.github.io/isort/)
+- Linting and formatting: [ruff](https://github.com/astral-sh/ruff)
 - Pre-commit hooks configured
 - Testing with [pytest](https://docs.pytest.org/) and [coverage](https://coverage.readthedocs.io/)
 - Docker-ready
 
 ## Requirements
 
-- Python 3.13.9
-- [uv](https://github.com/astral-sh/uv) 0.9.3
+- Python 3.14.0
+- [uv](https://github.com/astral-sh/uv) 0.9.11
 - Docker (optional)
 
 ## Usage
 
-### Install uv 0.9.3
+### Install uv 0.9.11
 
 ```sh
-pip install uv==0.9.3
+pip install uv==0.9.11
 ```
 
 ### Install project dependencies
