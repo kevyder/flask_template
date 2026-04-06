@@ -4,25 +4,27 @@ A ready-to-use Flask project template with preconfigured development and testing
 
 ## Features
 
-- [Flask](https://flask.palletsprojects.com/) 3.1.2
-- Dependency management with [uv](https://github.com/astral-sh/uv)
+- [Flask](https://flask.palletsprojects.com/) (>=3.1.3)
+- Dependency management with [uv](https://github.com/astral-sh/uv) (>=0.11.3)
 - Linting and formatting: [ruff](https://github.com/astral-sh/ruff)
 - Pre-commit hooks configured
 - Testing with [pytest](https://docs.pytest.org/) and [coverage](https://coverage.readthedocs.io/)
 - Docker-ready
 
+> **Note:** Actual dependency versions are pinned in `pyproject.toml`—the above are minimums.
+
 ## Requirements
 
-- Python 3.14.0
-- [uv](https://github.com/astral-sh/uv) 0.9.11
+- Python >=3.13.1
+- [uv](https://github.com/astral-sh/uv) >=0.11.3
 - Docker (optional)
 
 ## Usage
 
-### Install uv 0.9.11
+### Install uv
 
 ```sh
-pip install uv==0.9.11
+pip install "uv>=0.11.3"
 ```
 
 ### Install project dependencies
@@ -33,14 +35,16 @@ uv sync
 
 ### Run locally
 
+Run the Flask app (dev mode):
+
 ```sh
-flask run --host=0.0.0.0 --port=8080 --debug
+uv run flask --app src.app run --host=0.0.0.0 --port=8080 --debug
 ```
 
-Or simply:
+Or, for simpler quick testing:
 
 ```sh
-python app.py
+uv run python -m flask --app src.app run --host=0.0.0.0 --port=8080 --debug
 ```
 
 ### Run with Docker
@@ -53,8 +57,16 @@ The app will be available at [http://localhost:8080](http://localhost:8080).
 
 ## Testing
 
+Run tests locally:
+
 ```sh
-pytest
+uv run pytest
+```
+
+Or, using Docker (runs tests and exits):
+
+```sh
+docker-compose -f docker-compose.test.yml up --build
 ```
 
 ## Pre-commit
@@ -62,16 +74,18 @@ pytest
 Install pre-commit hooks:
 
 ```sh
-pre-commit install
+uv run pre-commit install
 ```
 
 ## Project structure
 
 ```
 .
-├── app.py
+├── src/
+│   └── app.py
 ├── Dockerfile
 ├── docker-compose.yml
+├── docker-compose.test.yml
 ├── pyproject.toml
 ├── uv.lock
 ├── README.md
