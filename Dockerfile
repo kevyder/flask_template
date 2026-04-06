@@ -1,7 +1,7 @@
 FROM python:3.14.0-slim
 
 ENV PYTHONUNBUFFERED 1
-ENV UV_VERSION=0.9.11
+ENV UV_VERSION=0.11.3
 ENV UV_PROJECT_ENVIRONMENT="/usr/local/"
 
 # Set Flask main module
